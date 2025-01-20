@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>セブンイレブン支払票作成</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts から Noto Sans JP を読み込む -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 5%;
+            background: url(https://www.upfc.jp/helloproject/images/cmn/login_ttl.png) no-repeat center center/cover;
+            background-position: left center;
+            color: #fff;
+            text-align: left;
+            word-wrap: break-word;
+            margin-bottom: 20px; /* h1とリストの距離を広げる */
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 10px 0;
+            text-align: left;
+        }
+
+        ul li {
+            font-size: 14px; /* liの文字サイズを小さくする */
+            color: #555555;
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 1.5em;
+        }
+
+        ul li::before {
+            content: '※';
+            position: absolute;
+            left: 0;
+            color: #555555; /* beforeの文字色を変更 */
+        }
+
+        dt.color-main {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #008cd6;
+            text-align: left;
+            margin: 10px 0 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 0.6em;
+            font-size: 1.5rem;
+            line-height: 28px;
+            margin-bottom: 1em;
+            border: solid 1px #008cd6;
+            border-radius: 5px;
+            background-color: #E9EFFD;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border: solid 1px #008cd6; /* フォーカス時も枠線の色を変えない */
+        }
+
+        button {
+            background-color: #008cd6;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            line-height: 1;
+            padding: 15px 20px;
+            width: 60%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #006699;
+        }
+
+        .alert {
+            color: red;
+            font-size: 1rem;
+            margin: 5px 0 15px; /* 入力フォームに近づけてボタンから適度に離す */
+            display: none; /* 初期状態では非表示 */
+        }
+    </style>
+</head>
+<body>
+    <h1>セブンイレブン 支払票作成</h1>
+    <ul>
+        <li>13桁の数字を入力してください</li>
+        <li>ハイフンを含んだままでもペーストできます</li>
+    </ul>
+    <dt class="color-main">支払票番号</dt>
+    <input type="text" id="inputNumber" oninput="this.value = this.value.replace(/[^\d]/g, '');">
+    <div id="alert" class="alert">13桁の数字で入力してください</div>
+    <button id="goToPageB">コード生成</button>
+
+    <script>
+        document.getElementById("goToPageB").addEventListener("click", function() {
+            var inputNumber = document.getElementById("inputNumber").value;
+            var alert = document.getElementById("alert");
+
+            // 13桁の数字かどうかをチェック
+            if (/^\d{13}$/.test(inputNumber)) {
+                alert.style.display = "none"; // アラートを非表示
+                // ページBに渡す
+                window.location.href = "pageB.html?number=" + inputNumber;
+            } else {
+                alert.style.display = "block"; // アラートを表示
+            }
+        });
+    </script>
+</body>
+</html>
