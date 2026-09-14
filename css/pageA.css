@@ -1,1 +1,332 @@
-abb
+:root {
+  --main_color: #008cd6;
+  --hd_gradi1: #008cd6;
+  --hd_gradi2: #48acf2;
+  --hd_gradi3: #b6dcff;
+
+  /* 番号入力エリアのサイズはここだけで管理 */
+  --number-control-height: 58px;
+  --generate-button-width-mobile: 58px;
+  --remove-button-width: 28px;
+}
+
+/* =========================================================
+   元 pageA のデザイン
+   ※ 元HTMLのCSSをそのまま維持し、背景画像パスのみローカル化
+   ========================================================= */
+
+body {
+  font-family: 'Noto Sans JP', Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 1.3rem;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 5%;
+  background: url("../assets/images/header/login_ttl.png") no-repeat center center/cover;
+  background-position: left center;
+  color: #fff;
+  text-align: left;
+  word-wrap: break-word;
+  margin-bottom: 20px;
+}
+
+ul.notes {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+  text-align: left;
+}
+
+ul.notes li {
+  font-size: 14px;
+  color: #555555;
+  margin-bottom: 5px;
+  position: relative;
+  padding-left: 1.5em;
+}
+
+ul.notes li::before {
+  content: '※';
+  position: absolute;
+  left: 0;
+  color: #555555;
+}
+
+dt.color-main {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #008cd6;
+  text-align: left;
+  margin: 10px 0 10px;
+}
+
+/* 元 pageA の input[type="text"] と同じ */
+input[type="text"] {
+  width: 100%;
+  padding: 10px 0.6em;
+  font-size: 1.5rem;
+  line-height: 28px;
+  margin-bottom: 0.2em;
+  border: solid 1px #008cd6;
+  border-radius: 5px;
+  background-color: #E9EFFD;
+  box-sizing: border-box;
+  height: var(--number-control-height);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border: solid 1px #008cd6;
+}
+
+/* 元 pageA の通常ボタンデザイン */
+.generate-button {
+  background-color: #008cd6;
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Noto Sans JP', Arial, sans-serif;
+  white-space: nowrap;
+  box-sizing: border-box;
+  height: var(--number-control-height);
+}
+
+.generate-button:hover {
+  background-color: #006699;
+}
+
+/* 元 .alert と同じ見た目 */
+.row-error {
+  color: red;
+  font-size: 1rem;
+  line-height: 1.2;
+  margin: 3px 0 12px;
+  display: block;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.row-error:empty {
+  display: none;
+}
+
+/* =========================================================
+   複数番号入力のために追加したレイアウト
+   ========================================================= */
+
+.page {
+  width: 100%;
+}
+
+.number-rows {
+  display: grid;
+  gap: 8px;
+}
+
+.number-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto var(--remove-button-width);
+  align-items: start;
+  gap: 8px;
+}
+
+.number-input-wrap {
+  min-width: 0;
+}
+
+/* 1行目は削除不可。ボタンそのものも表示しない */
+.number-row[data-row-number="1"] {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.number-row[data-row-number="1"] .remove-button {
+  display: none;
+}
+
+.remove-button {
+  width: var(--remove-button-width);
+  height: var(--number-control-height);
+  padding: 0;
+  border: solid 1px #cccccc;
+  border-radius: 5px;
+  background: #fff;
+  color: #555555;
+  font-family: 'Noto Sans JP', Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.add-button {
+  display: block;
+  margin-top: 14px;
+  margin-left: 0;
+  padding: 12px 18px;
+  border: solid 1px #9bd2ee;
+  border-radius: 5px;
+  background: #eef8fd;
+  color: #008cd6;
+  font-family: 'Noto Sans JP', Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+/* =========================================================
+   詳細設定
+   ========================================================= */
+
+.settings-panel {
+  margin-top: 28px;
+  border: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  text-align: left;
+}
+
+.settings-panel summary {
+  padding: 14px 16px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(
+    120deg,
+    var(--hd_gradi1) 10%,
+    var(--hd_gradi2) 60%,
+    var(--hd_gradi3)
+  );
+  list-style: none;
+}
+
+.settings-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-panel summary::after {
+  content: "＋";
+  float: right;
+  font-weight: bold;
+}
+
+.settings-panel[open] summary::after {
+  content: "−";
+}
+
+.settings-help {
+  margin: 16px 16px 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
+}
+
+.field {
+  position: relative;
+  display: grid;
+  gap: 7px;
+  padding-left: 14px;
+}
+
+.field::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 30px;
+  left: 0;
+  top: 15px;
+  transform: translate(0, -50%);
+  background: linear-gradient(#ffeb5d 50%, var(--main_color) 50%);
+}
+
+.field > span {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.settings-panel .field input[type="text"],
+.field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  margin-bottom: 0;
+  border: solid 2px #555555;
+  border-radius: 0;
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box;
+  font-family: 'Noto Sans JP', Arial, sans-serif;
+  font-size: 1rem;
+  line-height: normal;
+}
+
+.settings-panel .field input[type="text"]:focus,
+.field select:focus {
+  outline: none;
+  border: solid 2px var(--main_color);
+}
+
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 34px;
+  background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpolygon fill='%23008cd6' points='440.189,92.085 256.019,276.255 71.83,92.085 0,163.915 256.019,419.915 512,163.915'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 5px center;
+  background-size: 15px 15px;
+}
+
+.secondary-button {
+  margin: 0 16px 16px;
+  padding: 10px 12px;
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  color: #444;
+  background: #fff;
+  font-family: 'Noto Sans JP', Arial, sans-serif;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+/* スマホでも入力欄とボタンの高さを揃える */
+@media (max-width: 620px) {
+  .number-row {
+    grid-template-columns:
+      minmax(0, 1fr)
+      var(--generate-button-width-mobile)
+      var(--remove-button-width);
+    gap: 6px;
+  }
+
+  .number-row[data-row-number="1"] {
+    grid-template-columns:
+      minmax(0, 1fr)
+      var(--generate-button-width-mobile);
+  }
+
+  .generate-button {
+    width: var(--generate-button-width-mobile);
+    padding: 0 8px;
+  }
+
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
