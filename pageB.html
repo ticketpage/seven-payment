@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>セブン-イレブン引換票</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="css/reset.css" media="screen">
+  <link rel="stylesheet" href="css/stylesp.css" media="screen">
+</head>
+
+<body>
+  <header>
+    <h1>
+      <img src="assets/images/header/h1.png" alt="セブン-イレブン" width="auto" height="50">
+    </h1>
+  </header>
+
+  <div id="cord_box">
+    <h2>
+      <img
+        class="img_w100"
+        src="assets/images/header/h2_ticket_haraikomi.png"
+        alt="インターネットチケット発券サービス引換票"
+        width="300"
+        height="58"
+      >
+    </h2>
+
+    <dl class="cord_box">
+      <p>店員に「画面に表示しているバーコード」のスキャンをお申し付けください。</p>
+      <p class="exp">スキャンできない場合は、バーコード上にある13ケタの番号を店員にお伝えください。</p>
+      <p class="exp">覗き見防止、破損防止用のシートが貼られている場合や画面のバックライトが点灯していない場合はスキャンができないことがあります。</p>
+    </dl>
+
+    <dl class="cord_box">
+      <dt><span id="g009">引換票番号</span></dt>
+      <dd>
+        <p class="cord_txt"><span id="g010"></span></p>
+        <img id="barcodeImage" class="cord_img" src="" width="245" height="56" alt="バーコード">
+        <hr>
+      </dd>
+    </dl>
+
+    <img
+      id="paymentImage"
+      class="option"
+      src="assets/images/payment/siharai_nomi.png"
+      width="290"
+      height="112"
+      alt=""
+    >
+    <img
+      id="ticketImage"
+      class="option"
+      src="assets/images/ticket/ticket_nasi.png"
+      width="145"
+      height="56"
+      alt=""
+    >
+  </div>
+
+  <section>
+    <br>
+
+    <div class="maru">
+      <table class="list">
+        <tbody>
+          <tr>
+            <th>受付方法</th>
+            <td><span id="g011"></span></td>
+          </tr>
+          <tr>
+            <th>お客様名</th>
+            <td><span id="g012"></span></td>
+          </tr>
+          <tr>
+            <th>払込先名</th>
+            <td><span id="g013"></span></td>
+          </tr>
+          <tr>
+            <th>払込金額</th>
+            <td><span id="g014"></span></td>
+          </tr>
+          <tr>
+            <th>払込期限</th>
+            <td><span id="g016"></span></td>
+          </tr>
+          <tr>
+            <th>お渡し方法</th>
+            <td><span id="g019"></span></td>
+          </tr>
+          <tr>
+            <th>払込先専用注文番号</th>
+            <td><span id="g020"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <aside>
+      <dl class="address">
+        <dt>お客様用 連絡先</dt>
+        <dd><span id="g026"></span></dd>
+      </dl>
+    </aside>
+  </section>
+
+  <nav>
+    <a href="#">ご注意事項（必ずお読みください）</a>
+  </nav>
+
+  <footer>
+    <div data-role="footer" data-position="fixed">
+      <p>(C) Seven-Eleven Japan</p>
+    </div>
+  </footer>
+
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+
+  <script src="js/config.js"></script>
+  <script src="js/pageB.js"></script>
+</body>
+</html>

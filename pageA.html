@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>セブンイレブン 支払票作成</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/pageA.css">
+</head>
+<body>
+  <main class="page">
+    <h1>セブンイレブン 支払票作成</h1>
+
+    <section class="number-section" aria-labelledby="number-title">
+      <ul class="notes">
+        <li>13桁の数字を入力してください</li>
+        <li>ハイフンを含んだままでもペーストできます</li>
+      </ul>
+
+      <dt id="number-title" class="color-main">支払票番号</dt>
+
+      <div id="numberRows" class="number-rows"></div>
+
+      <button id="addNumberRow" class="add-button" type="button">
+        ＋ 番号を追加
+      </button>
+    </section>
+
+    <details class="settings-panel">
+      <summary>詳細設定</summary>
+
+      <p class="settings-help">
+        通常は変更不要です。必要な項目のみ変更してください。
+      </p>
+
+      <div class="settings-grid">
+        <label class="field">
+          <span>受付方法</span>
+          <input type="text" id="receptionMethod">
+        </label>
+
+        <label class="field">
+          <span>お客様名</span>
+          <input type="text" id="customerName">
+        </label>
+
+        <label class="field">
+          <span>払込先名</span>
+          <input type="text" id="paymentDestination">
+        </label>
+
+        <label class="field">
+          <span>払込金額</span>
+          <input type="text" id="amount">
+        </label>
+
+        <label class="field">
+          <span>払込期限</span>
+          <input type="text" id="paymentDeadline" placeholder="空欄の場合は当日の23:59">
+        </label>
+
+        <label class="field">
+          <span>お渡し方法</span>
+          <input type="text" id="deliveryMethod">
+        </label>
+
+        <label class="field">
+          <span>払込先専用注文番号</span>
+          <input type="text" id="orderNumber">
+        </label>
+
+        <label class="field">
+          <span>お客様用 連絡先</span>
+          <input type="text" id="customerContact">
+        </label>
+
+        <label class="field">
+          <span>支払い画像</span>
+          <select id="paymentImage"></select>
+        </label>
+
+        <label class="field">
+          <span>チケット画像</span>
+          <select id="ticketImage"></select>
+        </label>
+      </div>
+
+      <button id="resetSettings" class="secondary-button" type="button">
+        設定を初期値に戻す
+      </button>
+    </details>
+  </main>
+
+  <template id="numberRowTemplate">
+    <div class="number-row">
+      <div class="number-input-wrap">
+        <input
+          class="number-input"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          aria-label="支払票番号"
+        >
+        <p class="row-error" aria-live="polite"></p>
+      </div>
+
+      <button class="generate-button" type="button">生成</button>
+      <button class="remove-button" type="button" aria-label="この番号を削除">×</button>
+    </div>
+  </template>
+
+  <script src="js/config.js"></script>
+  <script src="js/pageA.js"></script>
+</body>
+</html>
